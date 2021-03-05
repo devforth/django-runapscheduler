@@ -1,4 +1,5 @@
 from typing import Dict
+from functools import wraps
 from django.conf import settings
 from django.utils import timezone
 from apscheduler.schedulers.base import BaseScheduler
@@ -7,6 +8,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 def log_start_end_decorator(function):
+    @wraps(function)
     def wrapper(*args, **kwargs):
         func_name = f'{function.__module__}.{function.__name__}'
 
