@@ -16,7 +16,7 @@ class Command(BaseCommand):
     if len(jobs) == 0:
       self.stdout.write("❌ No scheduler jobs were found. Exiting...")
     else:
-      self.stdout.write(f"📦 Found {len(jobs)} jobs in [{', '.join(map(lambda job: job.func.__wrapped__.__module__, jobs))}] ")
+      self.stdout.write(f"📦 Found {len(jobs)} job(s) in [{', '.join(map(lambda job: job.func.__wrapped__.__module__.split('.')[0], jobs))}] app(s).")
 
       job_proxy.start_schedulers()
 
