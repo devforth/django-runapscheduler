@@ -12,10 +12,16 @@ def log_start_end_decorator(function):
     def wrapper(*args, **kwargs):
         func_name = f'{function.__module__}.{function.__name__}'
 
-        print(f"\n{timezone.now().ctime()}: '{func_name}' started execution.")
-        result = function(*args, **kwargs)
-        print(f"{timezone.now().ctime()}: '{func_name}' finished execution.\n")
-        return result
+        print(f"\n[START] {timezone.now().ctime()}: '{func_name}' started execution.")
+
+        try:
+            result = function(*args, **kwargs)
+            print(f"[STOP] {timezone.now().ctime()}: '{func_name}' successfully finished execution.\n")
+            return result
+        except:
+            print(f"[ERROR STOP] {timezone.now().ctime()}: '{func_name}' finished execution with an exception.\n")
+            raise
+
     return wrapper
 
 
