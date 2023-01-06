@@ -1,2 +1,2 @@
 django-compat>=1.0.15
-apscheduler>=3.9.1.post1
+apscheduler>=3.7.0
